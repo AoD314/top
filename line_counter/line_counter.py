@@ -24,7 +24,7 @@ class bcolors:
 ########################################################################################################################
 
 def len_to_str(value):
-    return (format(value, "1,d").replace(",", " "))    
+	return (format(value, "1,d").replace(",", " "))    
 
 def size_to_str(size, in_byte):
     if in_byte == True:
