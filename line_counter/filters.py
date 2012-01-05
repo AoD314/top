@@ -8,10 +8,10 @@ class Filters():
     def filters(self):
         fltrs = []
         if 'cpp' in self.c:
-            fltrs += ['.+\.cpp$', '.=\.c\+\+$', '.=\.hpp$', '.=\.h$', '.=\.h\+\+$']
+            fltrs += ['.+\.cpp$', '.+\.c\+\+$', '.+\.hpp$', '.+\.h$', '.+\.h\+\+$']
 
         if 'c' in self.c:
-            fltrs += ['.=\.c$', '.=\.cc$', '.=\.h$']
+            fltrs += ['.+\.c$', '.+\.cc$', '.+\.h$']
 
         if 'cmake' in self.c:
             fltrs += ['^CMakeLists\.txt$', '.+\.cmake$', '.+\.cmake\.in$']

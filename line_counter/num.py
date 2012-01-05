@@ -9,6 +9,9 @@ class Num():
     def __int__(self):
         return int(self.num)
 
+    def __eq__(self, value):
+        return True if int(self.num) == int(value) else False
+
     def __str__(self):
         return (format(self.num, "1,d").replace(",", " "))    
 
