@@ -20,8 +20,8 @@ def main():
     parser = argparse.ArgumentParser(description='Line Counter')
     parser.add_argument('--version', action='version', version='%(prog)s 1.0')
 
-    parser.add_argument('--hide-files', action='store_true', help='help')
-    parser.add_argument('--size-in-byte', action='store_true', help='show size in byte')
+    parser.add_argument('--hide-files', action='store_true', help='hide of files in view ')
+    parser.add_argument('--size-in-byte', action='store_true', help='show size in bytes')
     parser.add_argument('-p', '--path', help='path to directory with sources codes', default='.')
     parser.add_argument('-f', '--filters', nargs='*', help='list of filters', default=[], metavar='F')
     parser.add_argument('-af', '--antifilters', nargs='*', help='list of filters', default=['^\..+$'], metavar='F')

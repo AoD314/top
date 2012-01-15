@@ -167,7 +167,7 @@ class Tree():
                 len_name = 3 * level + max(len(os.path.basename(n.name)) for n in self.list_files)            
                 for f in self.list_files:
                     msg = shift + color.green() + '+-' + color.end() + ' {0:' + str(len_name) + '}' + color.gray() + ' ({1} lines, {2})' + color.end()
-                    print msg.format(os.path.basename(f.name), str(f.line), str(f.size))
+                    print (msg.format(os.path.basename(f.name), str(f.line), str(f.size)))
 
 
         ### stats
