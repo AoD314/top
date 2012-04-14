@@ -123,7 +123,7 @@ class Tree():
             style = '| {0:13} | {1:7} | {2:7} |'
 
             if len(l) > 0:
-                l.sort(key=operator.itemgetter(self.settings['sort']))
+                l = sorted(l, key=operator.itemgetter(self.settings['sort']))
                 len_name = max(len(n['name']) for n in l)
                 len_size = max(max(len(str(n['size'])) for n in l), 11)
                 h_line = '|' + ('=' * (len_name + len_size + 19)) + '|'

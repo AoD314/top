@@ -12,6 +12,9 @@ class Size():
     def __int__(self):
         return int(self.size)
 
+    def __lt__(self, value):
+        return int(self.size) < int(value)
+
     def __str__(self):
         if self.in_byte == True:
             return str(Num(self.size))

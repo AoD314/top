@@ -5,7 +5,7 @@ from size import Size
 
 class File():
     def __init__(self, name, in_byte):
-        self.name = name
+        self.n = name
         self.line = Num(0)
         self.size = Size(0, in_byte)
         try:
@@ -16,7 +16,7 @@ class File():
 
     @property
     def name(self):
-        return self.name
+        return self.n
 
     def ext(self):
         return self.name.split('.')[-1]
