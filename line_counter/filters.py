@@ -31,6 +31,9 @@ class Filters():
         if 'web' in self.c:
             fltrs += ['.+\.html$', '.+\.htm$', '.+\.css$', '.+\.js$', '.+\.php$']
 
+        if 'java' in self.c:
+            fltrs += ['.+\.java$']
+
         if 'php' in self.c:
             fltrs += ['.+\.php$']
 
