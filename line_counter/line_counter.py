@@ -1,7 +1,7 @@
 #!/usr/bin/python3
 # -*- coding: utf-8 -*-
 
-import time, argparse
+import time, argparse, sys
 
 from filters import Filters
 from tree import Tree
@@ -34,6 +34,7 @@ def main():
     
     parser.add_argument('--nocolor',  action='store_true', help="use only white/black color for display all text")
 
+    print ("params: " + str(sys.argv))
     analyze(vars(parser.parse_args()))
 
 if __name__ == "__main__":
