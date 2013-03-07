@@ -30,7 +30,7 @@ def main():
     parser.add_argument('--stats', choices=['none', 'short', 'all'], default='short', help='display statistics by code (default: %(default)s)')
     parser.add_argument('-s', '--sort', choices=['name', 'line', 'size', 'ext'], default='name', help='sort of the results(default: %(default)s)')
     parser.add_argument('--folder', choices=['none', 'local', 'global', 'both'], default='none', help='print info about directory(default: %(default)s)')
-    parser.add_argument('-c', '--code', nargs='+', choices=['cpp', 'c', 'java', 'd', 'tex', 'cmake', 'py', 'cs', 'web', 'php'], default=[], help='print info about directory(default: %(default)s)')
+    parser.add_argument('-c', '--code', nargs='+', choices=['cpp', 'c', 'cu', 'cl', 'java', 'd', 'tex', 'cmake', 'py', 'cs', 'web', 'php'], default=[], help='print info about directory(default: %(default)s)')
     
     parser.add_argument('--nocolor',  action='store_true', help="use only white/black color for display all text")
 

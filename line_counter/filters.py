@@ -25,6 +25,12 @@ class Filters():
         if 'd' in self.c:
             fltrs += ['.+\.d$']
 
+        if 'cu' in self.c:
+            fltrs += ['.+\.cu$']
+
+        if 'cl' in self.c:
+            fltrs += ['.+\.cl$']
+
         if 'cs' in self.c:
             fltrs += ['.+\.cs$']
 
