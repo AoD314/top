@@ -49,3 +49,13 @@ Example 01
 
     analyze time : 0.00121sec
 
+==========
+Example 02
+==========
+
+::
+
+    $ ./ttop.py
+    [ 12 x Intel(R) Core(TM) i7 CPU X 980 @ 3.33GHz ]   [ GeForce GTX 560 Ti ]
+                                            '+41.0°C'                '+40.0°C'
+
