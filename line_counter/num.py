@@ -1,4 +1,3 @@
-
 class Num():
     def __init__(self, num):
         self.num = int(num)
@@ -17,4 +16,3 @@ class Num():
 
     def __str__(self):
         return (format(self.num, "1,d").replace(",", " "))    
-

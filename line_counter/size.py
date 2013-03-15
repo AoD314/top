@@ -1,4 +1,3 @@
-
 from num import Num
 
 class Size():
@@ -33,4 +32,3 @@ class Size():
                 break
 
         return msg.format(float(self.size) / (1024 ** d))
-

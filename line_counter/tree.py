@@ -13,6 +13,7 @@ class Tree():
         self.list_files = []
         self.list_folders = []
         self.name = name
+        self.len_name = 0
 
         self.count_files = Num(0)
         self.count_folders = Num(0)
@@ -115,7 +116,17 @@ class Tree():
 
         return l
 
+    def set_len_name(self, value):
+        for t in self.list_folders:
+            t.len_name = value
+            t.set_len_name(value)
+
     def output(self, level = 0):
+        if level == 0:
+            ll = self.get_list()
+            self.len_name = 10 + max(len(os.path.basename(n['name'])) for n in ll)
+            self.set_len_name(self.len_name)
+
         color = Color(not self.settings['nocolor'])
         if self.settings['view'] == 'list':
             l = self.get_list()
@@ -164,10 +175,9 @@ class Tree():
                 d.output(level+1)
 
             if len(self.list_files) > 0 and self.settings['hide_files'] == False:
-                len_name = 3 * level + max(len(os.path.basename(n.name)) for n in self.list_files)            
                 for f in self.list_files:
-                    msg = shift + color.green() + '+-' + color.end() + ' {0:' + str(len_name) + '}' + color.gray() + ' ({1} lines, {2})' + color.end()
-                    print (msg.format(os.path.basename(f.name), str(f.line), str(f.size)))
+                    msg = '{0:' + str(self.len_name) + '} ({1:>8} lines, {2:>10})' + color.end()
+                    print (msg.format(shift + color.green() + '+-' + color.end() + os.path.basename(f.name) + color.gray(), str(f.line), str(f.size)))
 
 
         ### stats

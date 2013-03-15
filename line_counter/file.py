@@ -1,4 +1,3 @@
-
 import os
 from num import Num
 from size import Size
@@ -26,4 +25,3 @@ class File():
 
     def __getitem__(self):
         return self
-

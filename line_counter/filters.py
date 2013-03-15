@@ -25,11 +25,20 @@ class Filters():
         if 'd' in self.c:
             fltrs += ['.+\.d$']
 
+        if 'cu' in self.c:
+            fltrs += ['.+\.cu$']
+
+        if 'cl' in self.c:
+            fltrs += ['.+\.cl$']
+
         if 'cs' in self.c:
             fltrs += ['.+\.cs$']
 
         if 'web' in self.c:
             fltrs += ['.+\.html$', '.+\.htm$', '.+\.css$', '.+\.js$', '.+\.php$']
+
+        if 'java' in self.c:
+            fltrs += ['.+\.java$']
 
         if 'php' in self.c:
             fltrs += ['.+\.php$']
