@@ -27,6 +27,7 @@ def get_cmd():
         if len(cmd) > 0:
             c = cmd[0]
             cmd = cmd[1:]
+            print('estimated tasks: ', len(cmd))
     return c
 
 def run_cmd():
