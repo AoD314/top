@@ -1,9 +1,13 @@
 #!/usr/bin/env python3
 
-import re, subprocess, argparse
-import os, multiprocessing
+import re
+import subprocess
+import argparse
+import os
+import multiprocessing
 from multiprocessing import Lock
 from threading import Thread
+
 
 def read_cmd_from_file(name):
     with open(name, 'rt') as f:
@@ -17,8 +21,10 @@ def read_cmd_from_file(name):
                 nl.append(cmd)
     return nl
 
+
 cmd = []
 lock = Lock()
+
 
 def get_cmd():
     global cmd
@@ -30,11 +36,13 @@ def get_cmd():
             print('estimated tasks: ', len(cmd))
     return c
 
+
 def run_cmd():
     c = get_cmd()
-    while (c != ''):
-        text = subprocess.getoutput(c)
+    while c != '':
+        subprocess.getoutput(c)
         c = get_cmd()
+
 
 def main(np, files):
     global cmd
@@ -43,22 +51,23 @@ def main(np, files):
 
         pool = []
         for i in range(np):
-            t = Thread(target=run_cmd, daemon = True)
+            t = Thread(target=run_cmd, daemon=True)
             pool += [t]
             t.start()
 
         for p in pool:
             p.join()
 
+
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description='Run command from files in parallel.')
     parser.add_argument('-j', type=int, default=0, help='amount of parallel processes')
     parser.add_argument('file', metavar='file', type=str, nargs='+', help='file with commands')
-    
+
     args = parser.parse_args()
-    
+
     np = args.j if args.j != 0 else multiprocessing.cpu_count()
 
     files = [f for f in sorted(set(args.file)) if os.path.isfile(f)]
-    if np > 0 and np < 4096 and len(files) > 0:
+    if 0 < np < 4096 and len(files) > 0:
         main(np, files)
