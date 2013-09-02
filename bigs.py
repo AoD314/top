@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 
 import os
+import sys
 
 def size_to_str(size):
     # B-> K -> M -> G -> T
@@ -35,4 +36,8 @@ def main(path):
         print("{0}    {1}".format(size_to_str(i['size']), i['name']))
 
 if __name__ == '__main__':
-    main(os.getcwd())
+    d = os.getcwd()
+    if len(sys.argv) > 1 and os.path.isdir(sys.argv[1]):
+        d = sys.argv[1]
+    main(d)
+
