@@ -1,6 +1,6 @@
-~~~~~~~
+
 analyze
-~~~~~~~
+```````
 
 ::
 
@@ -23,13 +23,13 @@ analyze
     FMA3   : 0
     FMA4   : 0
 
-~~~~~~~~~~~~
+
 line_counter
-~~~~~~~~~~~~
+````````````
 
 ::
 
-    $ ./line_counter.py -c cpp c cu cl cmake py java -p /work/opencv/opencv/modules/core/src/ --stats short
+    $ ./line_counter.py -c cpp cu p opencv/modules/core/src/ --stats short
         
     /work/opencv/opencv/modules/core/src/
     +- cuda
@@ -78,9 +78,9 @@ line_counter
     
     analyze time : 0.01808sec
 
-~~~~
+
 ttop
-~~~~
+````
 
 ::
 
@@ -88,22 +88,26 @@ ttop
     [ 12 x Intel(R) Core(TM) i7 CPU X 980 @ 3.33GHz ]   [ GeForce GTX 560 Ti ]
                                             '+41.0°C'                '+40.0°C'
 
-~~~~~~~~
+
+
 executer
-~~~~~~~~
+````````
 
 ::
+
     $ ./executer.py run_list.txt 
     estimated tasks:  3
     estimated tasks:  2
     estimated tasks:  1
     estimated tasks:  0
 
-~~~~
+
+
 bigs
-~~~~
+````
 
 ::
+
     $ ./bigs.py /work/opencv/build/bin
     /work/opencv/build/bin : 9830 K
     2066 K    opencv_perf_imgproc
@@ -133,3 +137,4 @@ bigs
     15.4 K    opencv_perf_gpucodec
     14.6 K    opencv_test_gpufilters
     14.6 K    opencv_test_gpucodec
+
