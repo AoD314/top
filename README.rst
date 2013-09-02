@@ -1,7 +1,3 @@
-
-analyze
-```````
-
 ::
 
     $./analyze.py --app /usr/bin/mplayer2 
@@ -22,10 +18,6 @@ analyze
     AVX    : 0
     FMA3   : 0
     FMA4   : 0
-
-
-line_counter
-````````````
 
 ::
 
@@ -78,20 +70,11 @@ line_counter
     
     analyze time : 0.01808sec
 
-
-ttop
-````
-
 ::
 
     $ ./ttop.py
     [ 12 x Intel(R) Core(TM) i7 CPU X 980 @ 3.33GHz ]   [ GeForce GTX 560 Ti ]
                                             '+41.0°C'                '+40.0°C'
-
-
-
-executer
-````````
 
 ::
 
@@ -100,11 +83,6 @@ executer
     estimated tasks:  2
     estimated tasks:  1
     estimated tasks:  0
-
-
-
-bigs
-````
 
 ::
 
@@ -137,4 +115,3 @@ bigs
     15.4 K    opencv_perf_gpucodec
     14.6 K    opencv_test_gpufilters
     14.6 K    opencv_test_gpucodec
-
