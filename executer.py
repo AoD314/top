@@ -8,6 +8,12 @@ import multiprocessing
 from multiprocessing import Lock
 from threading import Thread
 
+import time
+
+import datetime
+
+run_status = {}
+
 
 def read_cmd_from_file(name):
     with open(name, 'rt') as f:
@@ -26,6 +32,15 @@ cmd = []
 lock = Lock()
 
 
+def status_thread():
+    while True:
+        time.sleep(60)
+        with open('status_executer.log', 'w') as f:
+            for k in run_status.keys():
+                f.write('{}: [{}]\n'.format(k, run_status[k]))
+                f.flush()
+
+
 def get_cmd():
     global cmd
     c = ''
@@ -33,14 +48,22 @@ def get_cmd():
         if len(cmd) > 0:
             c = cmd[0]
             cmd = cmd[1:]
-            print('estimated tasks: ', len(cmd))
+            print('estimated tasks: {}'.format(len(cmd)), '    [time: {}]'.format(datetime.datetime.now()))
     return c
 
 
-def run_cmd():
+def set_status(thread, status):
+    global run_status
+    run_status[str(thread)] = status
+
+
+def run_cmd(thread_num):
     c = get_cmd()
     while c != '':
-        subprocess.getoutput(c)
+        with subprocess.Popen(c, stdout=subprocess.PIPE, shell=True, bufsize=1, universal_newlines=True) as p:
+            for line in iter(p.stdout.readline, ''):
+                set_status(thread_num, line.rstrip())
+            p.wait()
         c = get_cmd()
 
 
@@ -49,9 +72,11 @@ def main(np, files):
     for name in files:
         cmd = read_cmd_from_file(name)
 
+        Thread(target=status_thread, daemon=True).start()
+
         pool = []
         for i in range(np):
-            t = Thread(target=run_cmd, daemon=True)
+            t = Thread(target=run_cmd, args=(i,), daemon=True)
             pool += [t]
             t.start()
 
@@ -70,4 +95,9 @@ if __name__ == "__main__":
 
     files = [f for f in sorted(set(args.file)) if os.path.isfile(f)]
     if 0 < np < 4096 and len(files) > 0:
+        start = datetime.datetime.now()
+        print('start : {}'.format(start))
         main(np, files)
+        finish = datetime.datetime.now()
+        print('finish: {}'.format(finish))
+        print('total : {}'.format(finish - start))
