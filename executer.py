@@ -12,8 +12,6 @@ import time
 
 import datetime
 
-run_status = {}
-
 
 def read_cmd_from_file(name):
     with open(name, 'rt') as f:
@@ -32,15 +30,6 @@ cmd = []
 lock = Lock()
 
 
-def status_thread():
-    while True:
-        time.sleep(60)
-        with open('status_executer.log', 'w') as f:
-            for k in run_status.keys():
-                f.write('{}: [{}]\n'.format(k, run_status[k]))
-                f.flush()
-
-
 def get_cmd():
     global cmd
     c = ''
@@ -48,22 +37,14 @@ def get_cmd():
         if len(cmd) > 0:
             c = cmd[0]
             cmd = cmd[1:]
-            print('estimated tasks: {}'.format(len(cmd)), '    [time: {}]'.format(datetime.datetime.now()))
+            print('estimated tasks: {}'.format(len(cmd)), '    [time: {}] -> {}'.format(datetime.datetime.now(), c))
     return c
-
-
-def set_status(thread, status):
-    global run_status
-    run_status[str(thread)] = status
 
 
 def run_cmd(thread_num):
     c = get_cmd()
     while c != '':
-        with subprocess.Popen(c, stdout=subprocess.PIPE, shell=True, bufsize=1, universal_newlines=True) as p:
-            for line in iter(p.stdout.readline, ''):
-                set_status(thread_num, line.rstrip())
-            p.wait()
+        subprocess.getstatusoutput(c)
         c = get_cmd()
 
 
@@ -71,8 +52,6 @@ def main(np, files):
     global cmd
     for name in files:
         cmd = read_cmd_from_file(name)
-
-        Thread(target=status_thread, daemon=True).start()
 
         pool = []
         for i in range(np):
